@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 function App() {
   return (
     <div className="App">
-      hello
+      <h1>mehul is gay</h1>
     </div>
   );
 }

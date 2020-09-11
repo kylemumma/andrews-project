@@ -1,9 +1,10 @@
 import React from "react";
+import LoginPage from "./components/LoginPage.js"
 
 function App() {
   return (
     <div className="App">
-      <h1>mehul is gay</h1>
+      <LoginPage />
     </div>
   );
 }

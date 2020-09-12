@@ -1,4 +1,6 @@
 import React from "react";
+import fire from "../firebaseConfig.js";
+import firebase from "firebase"
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -6,40 +8,29 @@ class LoginPage extends React.Component {
 
         this.state = {
             loggedIn: false,
-            username: "",
-            password: ""
+            token: "",
+            user: {}
         };
 
         this.provider = new firebase.auth.GoogleAuthProvider();
 
-        this.onUsernameChange = this.onUsernameChange.bind(this);
-        this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onLogIn = this.onLogIn.bind(this);
     }
 
-    onUsernameChange(event) {
-        this.setState({
-            username: event.target.value
-        });
-    }
-
-    onPasswordChange(event) {
-        this.setState({
-            password: event.target.value
-        });
-    }
-
-    onLogIn() {
-        console.log(this.state.username);
-        console.log(this.state.password);
-
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+    async onLogIn() {
+        try {
+            const result = await fire.auth().signInWithPopup(this.provider);
             // This gives you a Google Access Token. You can use it to access the Google API.
-            let token = result.credential.accessToken;
+            let token = await result.credential.accessToken;
             // The signed-in user info.
-            let user = result.user;
-            // ...
-          }).catch(function(error) {
+            let user = await result.user;
+
+            this.setState({
+                loggedIn: true,
+                token,
+                user
+            });
+        } catch(error) {
             // Handle Errors here.
             let errorCode = error.code;
             let errorMessage = error.message;
@@ -48,16 +39,25 @@ class LoginPage extends React.Component {
             // The firebase.auth.AuthCredential type that was used.
             let credential = error.credential;
             // ...
-          });
+            console.log(errorCode);
+            console.log(errorMessage);
+            console.log(email);
+            console.log(credential);
+        }
     }
 
     render() {
+        if(!this.state.loggedIn) {
+            return (
+                <div id="login-form">
+                    <button onClick={this.onLogIn}>Sign In with Google</button>
+                </div>
+            );
+        }
+        
+        // Logged In
         return (
-            <div id="login-form">
-                <input type="text" id="username" placeholder="username" onChange={this.onUsernameChange} value={this.state.username}></input>
-                <input type="password" id="password" placeholder="password" onChange={this.onPasswordChange} value={this.state.password}></input>
-                <button onClick={this.onLogIn}>Log In</button>
-            </div>
+        <h1>Welcome {this.state.user.displayName}</h1>
         );
     }
 }

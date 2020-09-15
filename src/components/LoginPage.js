@@ -1,8 +1,8 @@
 import React from "react";
 import fire from "../firebaseConfig.js";
 import firebase from "firebase";
-import './../css/loginPage.css';
-import { Row, Col, Button } from 'react-bootstrap';
+import "./../css/loginPage.css";
+import { Row, Col, Button } from "react-bootstrap";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -51,25 +51,36 @@ class LoginPage extends React.Component {
   render() {
     if (!this.state.loggedIn) {
       return (
-        <Row id="login-form" className="justify-content-center mt-4">
-            <Col className="text-center">
-                <Button onClick={this.onLogIn} variant="light">
-                    <img width="20px" style={{"marginBottom":"3px", "marginRight":"5px"}}
-                    alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"></img>
-                    Sign In with Google
-                </Button>
+        <div id="login-form">
+          <Row>
+            <Col>
+              <img src="./../imgs/foob-bank-logo.png" alt="FoodBank Logo" />
             </Col>
-        </Row>
+          </Row>
+          <Row className="justify-content-center mt-4">
+            <Col className="text-center">
+              <Button onClick={this.onLogIn} variant="light">
+                <img
+                  width="20px"
+                  style={{ marginBottom: "3px", marginRight: "5px" }}
+                  alt="Google sign-in"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+                ></img>
+                Sign In with Google
+              </Button>
+            </Col>
+          </Row>
+        </div>
       );
     }
 
     // Logged In
     return (
-        <Row>
-            <Col className="text-center">
-                <h1>Welcome {this.state.user.displayName}</h1>
-            </Col>
-        </Row>
+      <Row>
+        <Col className="text-center">
+          <h1>Welcome {this.state.user.displayName}</h1>
+        </Col>
+      </Row>
     );
   }
 }

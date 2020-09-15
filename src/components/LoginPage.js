@@ -1,10 +1,7 @@
 import React from "react";
 import fire from "../firebaseConfig.js";
 import firebase from "firebase";
-<<<<<<< HEAD
 import './../css/loginPage.css';
-=======
->>>>>>> 9767c9e6622f020ceae800bf2c072e1aa2f34c08
 
 class LoginPage extends React.Component {
   constructor(props) {

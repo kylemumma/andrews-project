@@ -1,6 +1,7 @@
 import React from "react";
 import fire from "../firebaseConfig.js";
-import firebase from "firebase"
+import firebase from "firebase";
+import './../css/loginPage.css';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -50,7 +51,7 @@ class LoginPage extends React.Component {
         if(!this.state.loggedIn) {
             return (
                 <div id="login-form">
-                    <button onClick={this.onLogIn}>Sign In with Google</button>
+                    <button id="google-sign-in-button" onClick={this.onLogIn}></button>
                 </div>
             );
         }

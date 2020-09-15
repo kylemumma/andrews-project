@@ -2,6 +2,7 @@ import React from "react";
 import fire from "../firebaseConfig.js";
 import firebase from "firebase";
 import './../css/loginPage.css';
+import { Row, Col, Button } from 'react-bootstrap';
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -50,14 +51,26 @@ class LoginPage extends React.Component {
   render() {
     if (!this.state.loggedIn) {
       return (
-        <div id="login-form">
-          <button onClick={this.onLogIn}>Sign In with Google</button>
-        </div>
+        <Row id="login-form" className="justify-content-center mt-4">
+            <Col className="text-center">
+                <Button onClick={this.onLogIn} variant="light">
+                    <img width="20px" style={{"marginBottom":"3px", "marginRight":"5px"}}
+                    alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"></img>
+                    Sign In with Google
+                </Button>
+            </Col>
+        </Row>
       );
     }
 
     // Logged In
-    return <h1>Welcome {this.state.user.displayName}</h1>;
+    return (
+        <Row>
+            <Col className="text-center">
+                <h1>Welcome {this.state.user.displayName}</h1>
+            </Col>
+        </Row>
+    );
   }
 }
 

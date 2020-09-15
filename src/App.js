@@ -1,5 +1,6 @@
 import React from "react";
 import LoginPage from "./components/LoginPage.js"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

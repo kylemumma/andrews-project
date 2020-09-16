@@ -54,7 +54,7 @@ class LoginPage extends React.Component {
         <div id="login-form">
           <Row>
             <Col>
-              <img src="./../imgs/foob-bank-logo.png" alt="FoodBank Logo" />
+              <img src="http://www.pmfb.org/wp-content/uploads/2017/11/foob-bank-logo.png" alt="Food Bank Logo" height="100px" className="mt-3 ml-3"/>
             </Col>
           </Row>
           <Row className="justify-content-center mt-4">

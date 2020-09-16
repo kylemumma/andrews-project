@@ -1,6 +1,3 @@
-#google-sign-in-button {
-    background-image: url("./../imgs/btn_google_signin_dark_normal_web.png");
-    background-size: cover;
-    width: 200px;
-    height: 50px;
+body {
+    background-color: #76b987 !important;
 }

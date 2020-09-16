@@ -1,6 +1,9 @@
 import React from "react";
 import fire from "../firebaseConfig.js";
 import firebase from "firebase";
+import Image from "react-bootstrap/Image";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Container from "react-bootstrap/Container";
 import "./../css/loginPage.css";
 import { Row, Col, Button } from "react-bootstrap";
 
@@ -52,11 +55,20 @@ class LoginPage extends React.Component {
     if (!this.state.loggedIn) {
       return (
         <div id="login-form">
-          <Row>
-            <Col>
-              <img src="http://www.pmfb.org/wp-content/uploads/2017/11/foob-bank-logo.png" alt="Food Bank Logo" height="100px" className="mt-3 ml-3"/>
-            </Col>
-          </Row>
+          <Jumbotron fluid>
+            <Container>
+              <Row>
+                <Col>
+                  <img
+                    src="http://www.pmfb.org/wp-content/uploads/2017/11/foob-bank-logo.png"
+                    alt="Food Bank Logo"
+                    height="100px"
+                    className="mt-1 ml-3"
+                  />
+                </Col>
+              </Row>
+            </Container>
+          </Jumbotron>
           <Row className="justify-content-center mt-4">
             <Col className="text-center">
               <Button onClick={this.onLogIn} variant="light">

@@ -4,8 +4,8 @@ import App from "./App";
 
 ReactDOM.render(
   //StrictMode help highlight potential problems
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  //<React.StrictMode>
+    <App />,
+  //</React.StrictMode>,
   document.getElementById("root")
 );

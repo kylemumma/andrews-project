@@ -1,5 +1,6 @@
 import React from "react";
 import {Navbar, Nav } from 'react-bootstrap';
+import { logout } from "./../auth.js"
 import GenerateBags from "./GenerateBags.js";
 import ViewInventory from "./ViewInventory.js";
 import AddNewDonations from "./AddNewDonations.js";

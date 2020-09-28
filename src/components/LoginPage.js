@@ -1,7 +1,7 @@
 import React from "react";
 import fire from "../firebaseConfig.js";
 import firebase from "firebase";
-import { setUser } from "./../auth.js";
+import { setToken } from "./../auth.js";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import { Row, Col, Button } from "react-bootstrap";
@@ -13,17 +13,9 @@ async function onLogIn() {
   try {
     const result = await fire.auth().signInWithPopup(provider);
     // This gives you a Google Access Token. You can use it to access the Google API.
-    let token = await result.credential.accessToken;
-    // The signed-in user info.
-    let user = result.user;
+    let token = await result.credential.idToken;
 
-    const userData = {
-      uid: user.uid,
-      token,
-      email: user.email
-    };
-
-    setUser(userData);
+    setToken(token);
   } catch (error) {
     // Handle Errors here.
     let errorCode = error.code;
@@ -33,10 +25,7 @@ async function onLogIn() {
     // The firebase.auth.AuthCredential type that was used.
     let credential = error.credential;
     // ...
-    console.log(errorCode);
-    console.log(errorMessage);
-    console.log(email);
-    console.log(credential);
+    console.error(errorCode, errorMessage, email, credential);
   }
 }
 

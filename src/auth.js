@@ -1,5 +1,5 @@
-const setUser = (user) => {
-    localStorage.setItem("user", JSON.stringify(user));
+const setToken = (token) => {
+    localStorage.setItem("token", token);
 }
 
 const logout = () => {
@@ -7,10 +7,32 @@ const logout = () => {
 }
 
 const isAuthenticated = () => {
-    if(localStorage.getItem("user")) {
-        return true;
+    const backendUrl = "https://andrews-project.glitch.me/authenticate";
+    const idToken = localStorage.getItem("token");
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idToken
+        })
+    };
+
+    // makes api call to backend authentication route
+    if(idToken) {
+        fetch(backendUrl, options)
+        .then(response => console.log(response))
+        .then(data => {
+            console.log("success:", data);
+            return true;
+        })
+        .catch(error => {
+            console.error("error:", error);
+            return false;
+        });
     }
     return false;
 }
 
-export {setUser, logout, isAuthenticated};
+export {setToken, logout, isAuthenticated};

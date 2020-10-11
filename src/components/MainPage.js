@@ -1,5 +1,5 @@
 import React from "react";
-import {Navbar, Nav } from 'react-bootstrap';
+import {Navbar, Nav} from 'react-bootstrap';
 import { logout } from "./../auth.js"
 import GenerateBags from "./GenerateBags.js";
 import ViewInventory from "./ViewInventory.js";
@@ -22,8 +22,32 @@ class MainPage extends React.Component {
         }
 
         this.state = {
-            currentTab: this.keys.GENERATE_BAGS
+            currentTab: this.keys.GENERATE_BAGS,
+            addNewDonationState: {
+                itemName: "",
+                quantity: 0,
+                expirationDate: "",
+                category: "",
+                donationSource: ""
+            }
         }
+
+        this.addNewItemOnChange = this.addNewItemOnChange.bind(this);
+        this.addNewItemOnSubmit = this.addNewItemOnSubmit.bind(this);
+    }
+
+    addNewItemOnChange = (event) => {
+        let tmpObj = this.state.addNewDonationState;
+        tmpObj[event.target.id] = event.target.value;
+
+        this.setState({
+            addNewDonationState: tmpObj
+        });
+    }
+
+    addNewItemOnSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state.addNewDonationState);
     }
 
     /*
@@ -72,7 +96,7 @@ class MainPage extends React.Component {
             case this.keys.VIEW_INVENTORY:
                 return <ViewInventory />;
             case this.keys.ADD_NEW_DONATIONS:
-                return <AddNewDonations />;
+                return <AddNewDonations onChange={this.addNewItemOnChange} onSubmit={this.addNewItemOnSubmit}/>;
             case this.keys.VIEW_CUSTOMERS:
                 return <ViewCustomers />;
             case this.keys.MODIFY_CUSTOMER_LIST:
